@@ -1,7 +1,5 @@
 require 'nokogiri'
 require 'open-uri'
-require 'pry'
-
 
 class Scraper
 
@@ -60,34 +58,6 @@ class Scraper
     specific_karma
   end
 
- 
 
- ## def get_learn_students
-  ##  full_url.collect do |student_url|
-  ##    begin 
-   ##     doc = Nokogiri::HTML(open("#{student_url}"))
-    ##  rescue
-    ##    next
-    ##  end
-   ## end 
- ## end
-
- ## def find_git_account
- ##   get_learn_students.each do |nested_array|
-  ##    nested_array.css(".vitals-container") 
-  ##  end     
-    
- ## end
-
-#  1. create student
- # 1.5. first create through instance variables. 
- ##student needs hash attributes name:, website:, github:, learn: url , karma: , longest_streak: ## 
-# 2. create full url 
-# 3. nokogiri open new url 
-#4. retrieve a href github url 
-#5. use end from gh url to get learn.co/students/# url
-#6. get karma points from learn.co using 
- ### css.".karma-points h3".text
- ###7. woot!
 end
 

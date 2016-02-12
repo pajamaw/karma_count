@@ -1,6 +1,5 @@
-#!/usr/bin/env ruby
-
 require_relative "../lib/cli.rb"
 
+class KarmaCount
 
-Cli.new.run
+end

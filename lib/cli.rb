@@ -135,22 +135,20 @@ class Cli
     competitors = Student.all.select do |student|
         student.karma if !(student.karma.nil? )
       end
-    name = nil
+    search_name = nil
     competitors.sort_by!{|student| student.karma}
     puts "_________________________KARMA SEARCH_______________________________"
     puts ""
     puts "Enter your first and last name"
-    name = gets.strip.downcase
+    sleep 1
+    puts "If your name is not put down correctly no result will show"
+    search_name = gets.strip.downcase
     competitors.reverse.each_with_index do |student,index| 
-      if name == student.name.downcase
+      if search_name == student.name.downcase
         header
         puts ""
         puts " You are in position #{index.to_i.next}!"
-      elsif name != student.name.downcase
-        header
-        puts ""
-        puts "That name was not found in our database, please try another name"
-      end 
+      end
     end
     sleep 1
     continue_or_quit
