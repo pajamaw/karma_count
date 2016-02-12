@@ -5,25 +5,6 @@ require 'pry'
 
 class Scraper
 
-
-  ##def self.get_learn_page(url)
-   ## students_array = []
-           ## http://students.learn.co ##
-   ## doc = Nokogiri::HTML(open("#{url}"))
-  ##end
-
-  ##def find_names
- ##   self.get_learn_page.css(".student-card")
- ## end
-
-  ##def new_url
-  ##  url = []
-   ## find_names.each do |name|
-  ##    url << name.css("a")[0]["href"]
- ##   end
-  ##  url
- ## end
-
  def self.scrape_index_page(index_url)
     student_array = []
     
@@ -40,14 +21,6 @@ class Scraper
     end
       student_array
   end
-
-  ##def full_url
-  ##  url = []
-  ##  new_url.each do |suffix|
-  ##    url << "http://students.learn.co/" + suffix
-  ##  end
-  ##  url
- ## end
 
   def self.scrape_profile_page(profile_url)
     specific_student = {}

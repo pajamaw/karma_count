@@ -17,14 +17,19 @@ class Cli
     sleep 1 
     puts ""
     puts "IF YOU'D LIKE TO CONTINUE WORK WHILE YOU WAIT"
+    sleep 1
+    puts ""
     puts "PLEASE PRESS CMD + T TO OPEN A NEW TAB"
     make_students
+    sleep 2
+    header
     puts ""
     puts "BUT HONESTLY IT WILL TAKE A FEW MINUTES"
     add_attributes_to_students
     puts ""
     puts "WE'RE ALMOST THERE I PROMISE"
     sleep 5
+    header
     puts ""
     puts "OKAY I LIED...IT'LL BE ABOUT 5 MINUTES"
     add_karma_to_students
@@ -48,21 +53,26 @@ class Cli
 
     def the_app
 
+      input = nil
+
       loop do 
         header
         puts "1.  TOP 10 KARMA PERFORMERS"
         puts ""
         puts "2.  ALL KARMA PERFORMERS"
         puts ""
-        
+        puts "3.  SEARCH"
+
         input = gets.strip
-        break if input == "1" || input == "2"
+        break if input == "1" || input == "2" || input == "3"
       end
 
         if input == "1"
           top_10
-        else 
+        elsif input == "2" 
           high_score
+        else 
+          search_for_position
         end
 
     end
@@ -94,12 +104,12 @@ class Cli
         student.karma if !(student.karma.nil? )
       end
     competitors.sort_by!{|student| student.karma}
-    puts "_________________________________KARMA TOP 10____________________________"
+    puts "___________________________KARMA TOP 10______________________________"
       competitors.reverse.each do |student|
         counter += 1 
         puts ""
         puts " #{counter}. #{student.name.upcase} from #{student.location} with #{student.karma} POINTS!"
-        puts "-----------------------------------------------------------------------------"
+        puts "---------------------------------------------------------------------"
         break if counter == 10
       end
     continue_or_quit
@@ -107,32 +117,42 @@ class Cli
 
   def high_score
     header
-    counter = 0
     competitors = Student.all.select do |student|
         student.karma if !(student.karma.nil? )
       end
     competitors.sort_by!{|student| student.karma}
-    puts "_________________________________KARMA HIGH SCORE____________________________"
-      competitors.reverse.each do |student|
-          counter += 1 
+    puts "_________________________KARMA HIGH SCORE____________________________"
+      competitors.reverse.each_with_index do |student, index|
           puts ""
-          puts " #{counter}. #{student.name.upcase} from #{student.location} with #{student.karma} POINTS!"
-          puts "-----------------------------------------------------------------------------"   
+          puts " #{index.to_i.next}. #{student.name.upcase} from #{student.location} with #{student.karma} POINTS!"
+          puts "---------------------------------------------------------------------"   
       end
       continue_or_quit
     end
 
-
- # def top_10 
-  #  counter = 0
-  #   puts "_________________________________KARMA TOP 10____________________________"
-  #  COMPETITORS.reverse.each do |student|
-     # until counter == 10
-      #    counter += 1 
-      #    puts ""
-      #    puts " #{counter}. #{student.name.upcase} from #{student.location} with #{student.karma} POINTS!"
-      #    puts "-----------------------------------------------------------------------------"
-   # end
-  #  end
-
+    def search_for_position
+    header
+    competitors = Student.all.select do |student|
+        student.karma if !(student.karma.nil? )
+      end
+    name = nil
+    competitors.sort_by!{|student| student.karma}
+    puts "_________________________KARMA SEARCH_______________________________"
+    puts ""
+    puts "Enter your first and last name"
+    name = gets.strip.downcase
+    competitors.reverse.each_with_index do |student,index| 
+      if name == student.name.downcase
+        header
+        puts ""
+        puts " You are in position #{index.to_i.next}!"
+      elsif name != student.name.downcase
+        header
+        puts ""
+        puts "That name was not found in our database, please try another name"
+      end 
+    end
+    sleep 1
+    continue_or_quit
+    end
 end
