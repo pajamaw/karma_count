@@ -57,9 +57,9 @@ class Cli
 
       loop do 
         header
-        puts "1.  TOP 10 KARMA PERFORMERS"
+        puts "1.  TOP 10 KARMA CONTENDERS"
         puts ""
-        puts "2.  ALL KARMA PERFORMERS"
+        puts "2.  ALL KARMA CONTENDERS"
         puts ""
         puts "3.  SEARCH"
 
@@ -68,11 +68,11 @@ class Cli
       end
 
         if input == "1"
-          top_10
+          top_10_karma
         elsif input == "2" 
-          high_score
+          all_karma
         else 
-          search_for_position
+          search_for_karma_position
         end
 
     end
@@ -97,7 +97,7 @@ class Cli
     end
   end
 
-  def top_10
+  def top_10_karma
     header
     counter = 0
     competitors = Student.all.select do |student|
@@ -115,7 +115,7 @@ class Cli
     continue_or_quit
   end
 
-  def high_score
+  def all_karma
     header
     competitors = Student.all.select do |student|
         student.karma if !(student.karma.nil? )
@@ -130,7 +130,7 @@ class Cli
       continue_or_quit
     end
 
-    def search_for_position
+    def search_for_karma_position
     header
     competitors = Student.all.select do |student|
         student.karma if !(student.karma.nil? )
