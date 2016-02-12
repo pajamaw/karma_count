@@ -9,7 +9,7 @@ class Cli
     make_students
     add_attributes_to_students
     add_karma_to_students
-    display_students
+    high_score
   end
 
   def make_students
@@ -32,14 +32,31 @@ class Cli
     end
   end
 
-
-  def display_students
-    Student.all.each do |student|
-      puts "#{student.name.upcase}:"
-      puts "  #{student.location}"
-      puts "  #{student.karma}"
-      puts "----------------------"
+  def high_score
+    counter = 0
+    competitors = Student.all.select do |student|
+        student.karma if !(student.karma.nil? )
+      end
+    competitors.sort_by!{|student| student.karma}
+    puts "_________________________________KARMA HIGH SCORE____________________________"
+    competitors.reverse.each do |student|
+          counter += 1 
+          puts ""
+          puts " #{counter}. #{student.name.upcase} from #{student.location} with #{student.karma} POINTS!"
+          puts "-----------------------------------------------------------------------------"
     end
-  end
+    end
+
+ # def top_10 
+  #  counter = 0
+  #   puts "_________________________________KARMA TOP 10____________________________"
+  #  COMPETITORS.reverse.each do |student|
+     # until counter == 10
+      #    counter += 1 
+      #    puts ""
+      #    puts " #{counter}. #{student.name.upcase} from #{student.location} with #{student.karma} POINTS!"
+      #    puts "-----------------------------------------------------------------------------"
+   # end
+  #  end
 
 end

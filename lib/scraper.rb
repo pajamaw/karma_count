@@ -78,7 +78,7 @@ class Scraper
       rescue
         specific_karma[:karma] = nil
       else
-        points = doc.css(".karma-points h3").text
+        points = doc.css(".karma-points h3").text.to_i
         specific_karma[:karma] = points
       end
     else
