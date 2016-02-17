@@ -1,5 +1,7 @@
 # karma_count
 
+In order to activate this gem from your $PATH simply type in 'karma' from there it will immediately begin generating an updated version of the karma scoreboard. 
+
 this gem was designed by pj wickwire. he can be reached at pjpeterww@gmail.com 
 the original repository for it can be found on his github page at github.com/pajamaw
 

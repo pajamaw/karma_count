@@ -131,26 +131,26 @@ class Cli
     end
 
     def search_for_karma_position
-    header
-    competitors = Student.all.select do |student|
-        student.karma if !(student.karma.nil? )
+      header
+      competitors = Student.all.select do |student|
+          student.karma if !(student.karma.nil? )
+        end
+      search_name = nil
+      competitors.sort_by!{|student| student.karma}
+      puts "_________________________KARMA SEARCH_______________________________"
+      puts ""
+      puts "Enter your first and last name"
+      sleep 1
+      puts "If no results occur, check your name for spelling or check if there is an issue with your profile on www.students.learn.co"
+      search_name = gets.strip.downcase
+      competitors.reverse.each_with_index do |student,index| 
+        if search_name == student.name.downcase
+          header
+          puts ""
+          puts " You are in position #{index.to_i.next}!"
+        end
       end
-    search_name = nil
-    competitors.sort_by!{|student| student.karma}
-    puts "_________________________KARMA SEARCH_______________________________"
-    puts ""
-    puts "Enter your first and last name"
-    sleep 1
-    puts "If your name is not put down correctly no result will show"
-    search_name = gets.strip.downcase
-    competitors.reverse.each_with_index do |student,index| 
-      if search_name == student.name.downcase
-        header
-        puts ""
-        puts " You are in position #{index.to_i.next}!"
-      end
-    end
-    sleep 1
-    continue_or_quit
+      sleep 1
+      continue_or_quit
     end
 end
