@@ -1,6 +1,6 @@
 Gem::Specification.new do |gem|
   gem.name = 'karma_count'
-  gem.version = '0.0.1'
+  gem.version = '0.0.2'
   gem.date = Date.today.to_s
   
   gem.author = ["PJ Wickwire"]
@@ -13,6 +13,6 @@ Gem::Specification.new do |gem|
   
   gem.executables << 'karma'
 
-  gem
+  gem.dependencies = ["nokogiri", "open-uri"]
 end
  

@@ -8,16 +8,13 @@ class Scraper
     
     doc = Nokogiri::HTML(open(index_url))
 
-    doc.search(".student-card").each do |student|
-      
-      student_array <<  {
-
-    name: student.search("h4.student-name").text,
-    location:  student.search("p.student-location").text,
-    profile_url: "http://students.learn.co/#{student.search("a").attribute("href").value}"
-        }
+    doc.search(".student-card").collect do |student|
+      {
+        name: student.search("h4.student-name").text,
+        location:  student.search("p.student-location").text,
+        profile_url: "http://students.learn.co/#{student.search("a").attribute("href").value}"
+      }
     end
-      student_array
   end
 
   def self.scrape_profile_page(profile_url)

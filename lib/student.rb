@@ -1,13 +1,18 @@
 require 'nokogiri'
 class Student
   attr_accessor :name, :location, :profile_url, :github_url, :karma
-
+  def name=(name)
+    @name = name
+  end
   STUDENTS =[]
 
   def initialize(attributes)
     attributes.each do |k, v|
       self.send(("#{k}="), v)
     end
+   self.name=(attributes[:name])
+
+
     STUDENTS << self
   end
 
