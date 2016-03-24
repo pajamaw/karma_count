@@ -1,6 +1,6 @@
 Gem::Specification.new do |gem|
   gem.name = 'karma_count'
-  gem.version = '1.0.0'
+  gem.version = '0.0.0'
   gem.date = Date.today.to_s
   
   gem.author = ["PJ Wickwire"]
