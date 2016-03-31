@@ -10,10 +10,6 @@ class Student
     attributes.each do |k, v|
       self.send(("#{k}="), v)
     end
-   self.name=(attributes[:name])
-
-
-    STUDENTS << self
   end
 
   def self.create_from_collection(students_array)
