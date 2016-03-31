@@ -1,6 +1,6 @@
 Gem::Specification.new do |gem|
   gem.name = 'karma_count'
-  gem.version = '0.0.0'
+  gem.version = '2.0.1'
   gem.date = Date.today.to_s
   
   gem.author = ["PJ Wickwire"]
@@ -12,5 +12,6 @@ Gem::Specification.new do |gem|
   gem.licenses = 'MIT'
   
   gem.executables << 'karma_count'
+  gem.add_development_dependency "nokogiri"
 end
  
